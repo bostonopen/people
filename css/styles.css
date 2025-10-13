@@ -46,11 +46,11 @@ a {
   object-fit: cover;
 }
 
-.github {
+.github,.zulip {
   font-size: smaller;
 }
 
-.github > a {
+.github,.zulip > a {
   display: flex;
   align-items: center;
 }
