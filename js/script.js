@@ -14,6 +14,7 @@ async function populate_cards() {
         y = x[i].split('\t');
         x[i] = y;
         ghUsername = y[0];
+        zulipId = y[1];
         // person instance
         const inst = document.importNode(personTemplate.content, true);
         inst.querySelector('.github-username').innerHTML = ghUsername;
@@ -24,6 +25,16 @@ async function populate_cards() {
         inst.querySelector('.avatar-href').setAttribute('target', '_blank');
         inst.querySelector('.github-href').setAttribute('href', ghUrl);
         inst.querySelector('.github-href').setAttribute('target', '_blank');
+        if (zulipId != null) {
+          // Unfortuntely, Zulip user profiles are not public.
+          // See https://chat.zulip.org/#narrow/channel/137-feedback/topic/public.20profiles/near/1914236
+          var zulipUrl = 'https://osdc.zulipchat.com/#user/' + zulipId;
+          inst.querySelector('.zulip-id').innerHTML = 'Zulip';
+          inst.querySelector('.zulip-href').setAttribute('href', zulipUrl);
+          inst.querySelector('.zulip-href').setAttribute('target', '_blank');
+        } else {
+          inst.querySelector('.zulip').style.display = 'none';
+        }
         // Append the person instance to the DOM
         document.getElementById('people').appendChild(inst);
       }
