@@ -6,4 +6,6 @@ The first column is for your GitHub username and is required. The second column 
 
 Suggestions and pull requests are welcome, of course! 😄
 
+`run.sh` will spin up a dev environment at <http://localhost:8080/people/>
+
 [people.tsv]: people.tsv
