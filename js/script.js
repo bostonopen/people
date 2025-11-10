@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 async function populate_cards() {
+  const pathname = window.location.pathname;
+  const usernameInPath = pathname.substring(pathname.lastIndexOf('/') + 1).trim();
   const url = 'people.tsv';
   const personTemplate = document.getElementById('person-template');
   fetch(url)
@@ -13,16 +15,20 @@ async function populate_cards() {
       for (var i = 1; i < x.length - 1; i++) {
         y = x[i].split('\t');
         x[i] = y;
-        ghUsername = y[0];
+        ghUsername = y[0].trim();
+
+        // show all rows unless a username is in the path (e.g. people/pdurbin)
+        if (usernameInPath !== '' && ghUsername !== usernameInPath) continue;
+
         zulipId = y[1];
         // person instance
         const inst = document.importNode(personTemplate.content, true);
         inst.querySelector('.github-username').innerHTML = ghUsername;
         var ghImg = 'https://github.com/' + ghUsername + '.png';
         inst.querySelector('.imagesrc').setAttribute('src', ghImg);
+        var slug = ghUsername;
         var ghUrl = 'https://github.com/' + ghUsername;
-        inst.querySelector('.avatar-href').setAttribute('href', ghUrl);
-        inst.querySelector('.avatar-href').setAttribute('target', '_blank');
+        inst.querySelector('.avatar-href').setAttribute('href', slug);
         inst.querySelector('.github-href').setAttribute('href', ghUrl);
         inst.querySelector('.github-href').setAttribute('target', '_blank');
         if (zulipId != null) {
