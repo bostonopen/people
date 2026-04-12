@@ -33,8 +33,9 @@ async function populate_cards() {
         inst.querySelector('.github-href').setAttribute('target', '_blank');
         if (zulipId != null) {
           // Unfortuntely, Zulip user profiles are not public.
+          // We link to messages sent instead, which are public.
           // See https://chat.zulip.org/#narrow/channel/137-feedback/topic/public.20profiles/near/1914236
-          var zulipUrl = 'https://osdc.zulipchat.com/#user/' + zulipId;
+          var zulipUrl = 'https://osdc.zulipchat.com/#narrow/sender/' + zulipId;
           inst.querySelector('.zulip-id').innerHTML = 'Zulip';
           inst.querySelector('.zulip-href').setAttribute('href', zulipUrl);
           inst.querySelector('.zulip-href').setAttribute('target', '_blank');
