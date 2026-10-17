@@ -23,24 +23,28 @@ async function populate_cards() {
         zulipId = y[1];
         // person instance
         const inst = document.importNode(personTemplate.content, true);
-        inst.querySelector('.github-username').innerHTML = ghUsername;
+        inst.querySelector('.github-username').textContent = ghUsername;
         var ghImg = 'https://github.com/' + ghUsername + '.png';
         inst.querySelector('.imagesrc').setAttribute('src', ghImg);
+        inst.querySelector('.imagesrc').setAttribute('alt', 'Avatar of ' + ghUsername);
+        inst.querySelector('.github-href').setAttribute('aria-label', ghUsername + ' on GitHub (opens in new tab)');
         var slug = ghUsername;
         var ghUrl = 'https://github.com/' + ghUsername;
         inst.querySelector('.avatar-href').setAttribute('href', slug);
         inst.querySelector('.github-href').setAttribute('href', ghUrl);
         inst.querySelector('.github-href').setAttribute('target', '_blank');
-        if (zulipId != null) {
+        zulipId = (zulipId || '').trim();
+        if (zulipId !== '') {
           // Unfortuntely, Zulip user profiles are not public.
           // We link to messages sent instead, which are public.
           // See https://chat.zulip.org/#narrow/channel/137-feedback/topic/public.20profiles/near/1914236
           var zulipUrl = 'https://osdc.zulipchat.com/#narrow/sender/' + zulipId;
-          inst.querySelector('.zulip-id').innerHTML = 'Zulip';
+          inst.querySelector('.zulip-id').textContent = 'Zulip';
+          inst.querySelector('.zulip-href').setAttribute('aria-label', ghUsername + ' on Zulip (opens in new tab)');
           inst.querySelector('.zulip-href').setAttribute('href', zulipUrl);
           inst.querySelector('.zulip-href').setAttribute('target', '_blank');
         } else {
-          inst.querySelector('.zulip').style.display = 'none';
+          inst.querySelector('.zulip').remove();
         }
         // Append the person instance to the DOM
         document.getElementById('people').appendChild(inst);
