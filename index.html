@@ -1,9 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Boston Open Dev People</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>People | Boston Open Dev</title>
+    <meta name="description" content="Meet the people of Boston Open Dev, a Boston-area meetup for open source developers. Find members on GitHub and Zulip." />
+    <link rel="canonical" href="https://bostonopen.dev/people/" />
+    <meta name="theme-color" content="#1d4ed8" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Boston Open Dev" />
+    <meta property="og:title" content="People | Boston Open Dev" />
+    <meta property="og:description" content="Meet the people of Boston Open Dev, a Boston-area meetup for open source developers." />
+    <meta property="og:url" content="https://bostonopen.dev/people/" />
+    <meta property="og:image" content="https://bostonopen.dev/images/logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" href="/favicon.ico" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "People | Boston Open Dev",
+      "url": "https://bostonopen.dev/people/",
+      "isPartOf": { "@type": "WebSite", "name": "Boston Open Dev", "url": "https://bostonopen.dev/" }
+    }
+    </script>
     <link rel="stylesheet" href="css/styles.css" />
     <!-- Start Single Page Apps for GitHub Pages -->
     <script type="text/javascript">
@@ -29,29 +49,41 @@
       }(window.location))
     </script>
     <!-- End Single Page Apps for GitHub Pages -->
-    <script src="js/script.js"></script>
+    <script src="js/script.js" defer></script>
   </head>
   <body>
-    <h2 style="text-align: center;"><a href="../../">Boston Open Dev</a> <a href="../people/">People</a></h2>
-    <template id="person-template">
-      <div class="person-card">
-        <div class="person-image">
-          <a href="" class="avatar-href"><img src="" class="imagesrc"/></a>
-        </div>
-        <div class="container">
-          <div class="github">
-            <a href="" class="github-href">
-              <img src="images/github.svg" width="20" /><span class="github-username"></span>
-            </a>
-          </div>
-          <div class="zulip">
-            <a href="" class="zulip-href">
-              <img src="images/zulip.svg" width="20" /><span class="zulip-id"></span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </template>
-    <div id="people"></div>
+    <a class="skip-link" href="#people">Skip to people</a>
+    <header class="site-header">
+      <nav aria-label="Breadcrumb">
+        <a href="../../">Boston Open Dev</a>
+        <span aria-hidden="true">/</span>
+        <a href="../people/" aria-current="page">People</a>
+      </nav>
+      <h1>People</h1>
+      <p class="intro">Folks who have come to a Boston Open Dev meetup. <a href="https://github.com/bostonopen/people">Add yourself</a>.</p>
+    </header>
+    <main>
+      <template id="person-template">
+        <li class="person-card">
+          <a href="" class="avatar-href">
+            <img src="" class="imagesrc" alt="" width="160" height="160" loading="lazy" decoding="async" />
+            <span class="github-username person-name"></span>
+          </a>
+          <ul class="links">
+            <li class="github">
+              <a href="" class="github-href" rel="noopener">
+                <img src="images/github.svg" width="16" height="16" alt="" /><span>GitHub</span>
+              </a>
+            </li>
+            <li class="zulip">
+              <a href="" class="zulip-href" rel="noopener">
+                <img src="images/zulip.svg" width="16" height="16" alt="" /><span class="zulip-id"></span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </template>
+      <ul id="people" class="people-grid" aria-label="People"></ul>
+    </main>
   </body>
 </html>
